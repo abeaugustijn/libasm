@@ -15,8 +15,8 @@
 
 # include <stddef.h>
 
-size_t	ft_strlen(const char *s);
-int		ft_strcmp(const char *str1, const char *str2);
-char	*ft_strcpy(char *dest, const char *src);
+extern size_t	ft_strlen(const char *s) asm ("ft_strlen");
+extern int		ft_strcmp(const char *str1, const char *str2) asm ("ft_strcmp");
+extern char     *ft_strcpy(char *dest, const char *src) asm ("ft_strcpy");
 
 #endif
