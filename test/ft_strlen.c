@@ -6,7 +6,7 @@
 /*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 20:20:03 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/03/20 22:04:29 by aaugusti         ###   ########.fr       */
+/*   Updated: 2020/03/21 16:58:47 by aaugusti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void	ft_test_strlen(void)
+void	ft_strlen_test(void)
 {
 	char	buff[500];
 	size_t	i;
