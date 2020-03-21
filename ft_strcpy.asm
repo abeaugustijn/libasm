@@ -5,8 +5,6 @@ SECTION .TEXT:
 ;	char *ft_strcpy(char *dest, const char *src);
 
 ft_strcpy:
-	push rbp
-	mov rbp, rsp			; Setup
 	mov rcx, rdi			; Get the first argument into rcx
 	mov rdx, rsi			; Get the second argument into rdx
 	xor rax, rax			; Set rax to 0
@@ -21,6 +19,5 @@ loop:
 
 ret:
 	mov rax, rcx			; Move the dest pointer into rax
-	pop rbp
 	ret
 	

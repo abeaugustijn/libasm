@@ -5,8 +5,6 @@ SECTION .TEXT:
 ; 	int ft_strcmp(const char *str1, const char *str2);
 
 ft_strcmp:
-	push rbp
-	mov rbp, rsp			; Setup
 	mov rcx, rdi			; Get the first argument into rcx
 	mov rdx, rsi			; Get the second argument into rdx
 	xor rax, rax			; Set rax to 0. This will act as a counter and later as
@@ -29,5 +27,4 @@ ret:
 							; were just using those.
 	sub rax, r9				; Substract the value of the char in the second
 							; string from the one we had.
-	pop rbp					; Return
 	ret
