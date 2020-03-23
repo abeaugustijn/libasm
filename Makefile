@@ -6,7 +6,7 @@
 #    By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/20 20:26:10 by aaugusti          #+#    #+#              #
-#    Updated: 2020/03/20 22:41:45 by aaugusti         ###   ########.fr        #
+#    Updated: 2020/03/21 18:53:07 by aaugusti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ ASM					=	nasm
 SRCS				=	strlen\
 						strcmp\
 						strcpy\
+						write\
 
 AMS_FILES			=	$(SRCS:%=ft_%.asm)
 OFILES				=	$(SRCS:%=ft_%.o)

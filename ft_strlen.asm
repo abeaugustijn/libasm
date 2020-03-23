@@ -1,6 +1,9 @@
 SECTION .TEXT:
 	GLOBAL ft_strlen
 
+; C prototype
+;	extern size_t	ft_strlen(const char *s) asm ("ft_strlen");
+
 ft_strlen:
 	mov rcx, rdi		; Get the pointer to the string
 	xor rax, rax		; Set rax to 0, as it will be the return value

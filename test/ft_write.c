@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libasm.h                                           :+:      :+:    :+:   */
+/*   ft_write.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 20:20:47 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/03/21 18:46:07 by aaugusti         ###   ########.fr       */
+/*   Created: 2020/03/21 18:51:32 by aaugusti          #+#    #+#             */
+/*   Updated: 2020/03/23 09:59:47 by aaugusti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBASM_H
-# define LIBASM_H
+#include "../libasm.h"
 
-# include <stddef.h>
+void	ft_write_test(void)
+{
+	char	*str;
+	size_t	len;
 
-extern size_t	ft_strlen(const char *s) asm ("ft_strlen");
-extern int		ft_strcmp(const char *str1, const char *str2) asm ("ft_strcmp");
-extern char     *ft_strcpy(char *dest, const char *src) asm ("ft_strcpy");
-extern size_t	ft_write(int fd, const void *buf, size_t count);
-
-#endif
+	str = "If you see this, it worked!\n";
+	len = ft_strlen(str);
+	ft_write(1, str, len);
+}
