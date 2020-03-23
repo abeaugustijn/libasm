@@ -6,7 +6,7 @@
 /*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 20:25:17 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/03/23 09:58:47 by aaugusti         ###   ########.fr       */
+/*   Updated: 2020/03/23 10:06:58 by aaugusti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ int main()
 	ft_strcmp_test();
 	ft_strcpy_test();
 	ft_write_test();
+	ft_read_test();
 }
