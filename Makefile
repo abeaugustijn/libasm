@@ -6,23 +6,24 @@
 #    By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/20 20:26:10 by aaugusti          #+#    #+#              #
-#    Updated: 2020/03/23 10:03:05 by aaugusti         ###   ########.fr        #
+#    Updated: 2020/03/23 11:25:24 by aaugusti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				=	libasm.a
-ASM					=	nasm
 
-SRCS				=	strlen\
+ASM					=	nasm -g
+CC					=	gcc
+LD					=	ld -dynamic-linker /lib64/ld-linux-x86-64.so.2
+
+SRCS				=	read\
 						strcmp\
 						strcpy\
+						strdup\
+						strlen\
 						write\
-						read\
 
-AMS_FILES			=	$(SRCS:%=ft_%.asm)
 OFILES				=	$(SRCS:%=ft_%.o)
-
-TEST_CFILES			=	$(SRCS:%=test/ft_%.c)
 TEST_OFILES			=	$(SRCS:%=test/ft_%.o)
 
 FLAGS				=	-Wall -Werror -Wextra -O0 -g
@@ -30,11 +31,10 @@ FLAGS				=	-Wall -Werror -Wextra -O0 -g
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	ar rs $(NAME) $(OFILES)
-
+	ld $(INCLUDES) -o $(NAME) $(OFILES)
 
 test: $(OFILES) $(TEST_OFILES) test/main.o
-	$(CC) $(FLAGS) $(OFILES) $(TEST_OFILES) test/main.o
+	$(LD) test/main.o -lc $(INCLUDES) $(OFILES) $(TEST_OFILES) -e "main"
 
 %.o: %.c
 	$(CC) -o $@ -c $< $(FLAGS)
@@ -43,7 +43,11 @@ test: $(OFILES) $(TEST_OFILES) test/main.o
 	$(ASM) -f elf64 $< -o $@
 
 clean:
-	rm -rf $(OFILES) $(TEST_OFILES)
+	rm -rf $(OFILES) $(TEST_OFILES) test/main.o
 
 fclean: clean
 	rm -rf $(NAME)
+
+re: fclean $(NAME)
+
+testre: fclean test
