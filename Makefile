@@ -1,32 +1,32 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:    :+:             #
 #                                                     +:+ +:+         +:+      #
 #    By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/20 20:26:10 by aaugusti          #+#    #+#              #
-#    Updated: 2020/03/23 11:25:24 by aaugusti         ###   ########.fr        #
+#    Updated: 2020/07/07 21:07:14 by aaugusti      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME				=	libasm.a
+NAME		=	libasm.a
 
-ASM					=	nasm -g
-CC					=	gcc
-LD					=	ld -dynamic-linker /lib64/ld-linux-x86-64.so.2
+ASM			=	nasm -g
+CC			=	gcc
+LD			=	ld -dynamic-linker /lib64/ld-linux-x86-64.so.2
 
-SRCS				=	read\
-						strcmp\
-						strcpy\
-						strdup\
-						strlen\
-						write\
+SRCS		=	read\
+				strcmp\
+				strcpy\
+				strdup\
+				strlen\
+				write\
 
-OFILES				=	$(SRCS:%=ft_%.o)
-TEST_OFILES			=	$(SRCS:%=test/ft_%.o)
+OFILES		=	$(SRCS:%=ft_%.o)
+TEST_OFILES	=	$(SRCS:%=test/ft_%.o)
 
-FLAGS				=	-Wall -Werror -Wextra -O0 -g
+FLAGS		=	-Wall -Werror -Wextra -O0 -g
 
 all: $(NAME)
 
