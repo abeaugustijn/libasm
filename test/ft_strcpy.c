@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:    :+:            */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 22:36:01 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/03/20 23:04:13 by aaugusti         ###   ########.fr       */
+/*   Updated: 2020/07/07 21:38:16 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libasm.h"
+#include "test.h"
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
@@ -24,10 +25,7 @@ static void ft_strcpy_test_one(char *str)
 	if (!dest)
 		assert(0);
 	assert(ft_strcpy(dest, str) == dest);
-	printf("\ttesting: %s\n\tgot: %s\n\tdiff: %d\n\n",
-			str,
-			dest,
-			ft_strcmp(dest, str));
+	assert(strcmp(dest, str) == 0);
 }
 
 void	ft_strcpy_test(void)
@@ -37,4 +35,5 @@ void	ft_strcpy_test(void)
 	ft_strcpy_test_one("jalalalalaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	ft_strcpy_test_one("a");
 	ft_strcpy_test_one("");
+	printf(SUCCESS_STR);
 }

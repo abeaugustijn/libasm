@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:    :+:            */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 10:14:41 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/03/23 13:03:02 by aaugusti         ###   ########.fr       */
+/*   Updated: 2020/07/07 21:41:25 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libasm.h"
+#include "test.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,12 +25,10 @@ void	ft_strdup_test(void)
 {
 	char	*str1;
 	char	*str2;
-	char	test[NTESTS];
+	char	test[NTESTS + 1];
 	int		i;
 
-	assert(ft_strdup(NULL) == 0);
-
-	bzero(test, NTESTS);
+	bzero(test, NTESTS + 1);
 	printf("\nTEST: ft_strdup \n");
 	i = 0;
 	while (i < NTESTS)
@@ -42,6 +41,7 @@ void	ft_strdup_test(void)
 		free(str2);
 		i++;
 	}
+	printf(SUCCESS_STR);
 }
 
 #else

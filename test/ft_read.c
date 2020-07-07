@@ -6,11 +6,12 @@
 /*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 10:03:11 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/07/07 21:07:30 by aaugusti      ########   odam.nl         */
+/*   Updated: 2020/07/07 21:38:38 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libasm.h"
+#include "test.h"
 #include <assert.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -37,6 +38,6 @@ void	ft_read_test(void)
 	read1_ret = read(fd1, buf1, BUFSIZE);
 	read2_ret = ft_read(fd2, buf2, BUFSIZE);
 	assert(read1_ret == read2_ret);
-	if (strncmp(buf1, buf2, read1_ret))
-		printf("ft_read_test failed\n");
+	assert(strncmp(buf1, buf2, read1_ret) == 0);
+	printf(SUCCESS_STR);
 }
