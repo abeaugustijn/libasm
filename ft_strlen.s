@@ -1,5 +1,6 @@
-SECTION .TEXT:
-	GLOBAL ft_strlen
+global ft_strlen
+
+section .text
 
 ; C prototype
 ;	size_t	ft_strlen(const char *s);

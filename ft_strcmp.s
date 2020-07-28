@@ -1,5 +1,6 @@
-SECTION .TEXT:
-	GLOBAL ft_strcmp
+global ft_strcmp
+
+section .text
 
 ; C prototype
 ; 	int ft_strcmp(const char *str1, const char *str2);

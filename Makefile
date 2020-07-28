@@ -1,22 +1,24 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
+#                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
-#                                                     +:+ +:+         +:+      #
-#    By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/03/20 20:26:10 by aaugusti          #+#    #+#              #
-#    Updated: 2020/07/07 21:07:14 by aaugusti      ########   odam.nl          #
+#                                                      +:+                     #
+#    By: aaugusti <aaugusti@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2020/03/20 20:26:10 by aaugusti      #+#    #+#                  #
+#    Updated: 2020/07/28 15:27:07 by aaugusti      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libasm.a
 
-ASM			=	nasm -g
+AR			=	ar rs
+ASM			=	nasm
 CC			=	gcc
-LD			=	ld -dynamic-linker /lib64/ld-linux-x86-64.so.2
+LD			=	ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 --pic-executable
 
-SRCS		=	read\
+SRCS		=	\
+				read\
 				strcmp\
 				strcpy\
 				strdup\
@@ -26,21 +28,22 @@ SRCS		=	read\
 OFILES		=	$(SRCS:%=ft_%.o)
 TEST_OFILES	=	$(SRCS:%=test/ft_%.o)
 
-FLAGS		=	-Wall -Werror -Wextra -O0 -g
+CCFLAGS		=	-Wall -Werror -Wextra -O0 -g
+ASMFLAGS	=	-g -f macho64
 
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	ld $(INCLUDES) -o $(NAME) $(OFILES)
+	$(AR) $(NAME) $(OFILES)
 
-test: $(OFILES) $(TEST_OFILES) test/main.o
-	$(LD) test/main.o -lc $(INCLUDES) $(OFILES) $(TEST_OFILES) -e "main"
+test: $(NAME) $(TEST_OFILES) test/main.o
+	$(CC) $(CCFLAGS) -L. -lasm test/main.o $(TEST_OFILES) -o test.out
 
 %.o: %.c
-	$(CC) -o $@ -c $< $(FLAGS)
+	$(CC) -o $@ -c $< $(CCFLAGS)
 
-%.o: %.asm
-	$(ASM) -f elf64 $< -o $@
+%.o: %.s
+	$(ASM) $(ASMFLAGS) $< -o $@
 
 clean:
 	rm -rf $(OFILES) $(TEST_OFILES) test/main.o
@@ -51,3 +54,5 @@ fclean: clean
 re: fclean $(NAME)
 
 testre: fclean test
+
+.PHONY: test clean fclean testre

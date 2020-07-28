@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                        ::::::::            */
 /*   ft_strdup.c                                        :+:    :+:            */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/23 10:14:41 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/07/07 21:41:25 by aaugusti      ########   odam.nl         */
+/*                                                     +:+                    */
+/*   By: aaugusti <aaugusti@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2020/03/23 10:14:41 by aaugusti      #+#    #+#                 */
+/*   Updated: 2020/07/28 15:09:28 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,32 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NTESTS (50)
+#define NTESTS 1000
 
-#if 1
+void	ft_strdup_test_one(char *test_string)
+{
+	char	*return_values[2];
+
+	return_values[0] = strdup(test_string);
+	return_values[1] = ft_strdup(test_string);
+	assert(strcmp(return_values[0], return_values[1]) == 0);
+	free(return_values[0]);
+	free(return_values[1]);
+}
 
 void	ft_strdup_test(void)
 {
-	char	*str1;
-	char	*str2;
 	char	test[NTESTS + 1];
 	int		i;
 
-	bzero(test, NTESTS + 1);
 	printf("\nTEST: ft_strdup \n");
+	bzero(test, NTESTS + 1);
 	i = 0;
 	while (i < NTESTS)
 	{
 		test[i] = i % 26 + 'a';
-		str1 = strdup(test);
-		str2 = ft_strdup(test);
-		assert(!ft_strcmp(str1, str2));
-		free(str1);
-		free(str2);
+		ft_strdup_test_one(test);
 		i++;
 	}
 	printf(SUCCESS_STR);
 }
-
-#else
-
-void	ft_strdup_test(void)
-{
-	char	*res;
-	char	*str = "test\n";
-	res = ft_strdup(str);
-	printf("%s\n", res);
-	free(res);
-}
-
-#endif

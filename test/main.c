@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 20:25:17 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/03/23 12:46:41 by aaugusti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: aaugusti <aaugusti@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2020/03/20 20:25:17 by aaugusti      #+#    #+#                 */
+/*   Updated: 2020/07/28 15:14:01 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-int main()
+int	main(void)
 {
 	ft_strlen_test();
 	ft_strcmp_test();

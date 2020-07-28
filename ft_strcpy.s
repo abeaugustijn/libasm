@@ -1,5 +1,6 @@
-SECTION .TEXT:
-	GLOBAL ft_strcpy
+global ft_strcpy
+
+section .text
 
 ; C prototype
 ;	char *ft_strcpy(char *dest, const char *src);

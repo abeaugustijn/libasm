@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                        ::::::::            */
 /*   ft_strcpy.c                                        :+:    :+:            */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 22:36:01 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/07/07 21:38:16 by aaugusti      ########   odam.nl         */
+/*                                                     +:+                    */
+/*   By: aaugusti <aaugusti@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2020/03/20 22:36:01 by aaugusti      #+#    #+#                 */
+/*   Updated: 2020/07/28 15:11:55 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,17 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void ft_strcpy_test_one(char *str)
+typedef char *t_test_case;
+
+static t_test_case	g_test_cases[] = {
+	"jalallaa",
+	"jalalallalalala",
+	"a",
+	"",
+	NULL
+};
+
+static void	ft_strcpy_test_one(char *str)
 {
 	char	*dest;
 
@@ -28,12 +38,16 @@ static void ft_strcpy_test_one(char *str)
 	assert(strcmp(dest, str) == 0);
 }
 
-void	ft_strcpy_test(void)
+void		ft_strcpy_test(void)
 {
+	int	i;
+
 	printf("\nTEST: ft_strcpy \n");
-	ft_strcpy_test_one("jalalalal");
-	ft_strcpy_test_one("jalalalalaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-	ft_strcpy_test_one("a");
-	ft_strcpy_test_one("");
+	i = 0;
+	while (g_test_cases[i] != NULL)
+	{
+		ft_strcpy_test_one(g_test_cases[i]);
+		i++;
+	}
 	printf(SUCCESS_STR);
 }

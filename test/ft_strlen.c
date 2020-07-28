@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                        ::::::::            */
 /*   ft_strlen.c                                        :+:    :+:            */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 20:20:03 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/07/07 21:39:20 by aaugusti      ########   odam.nl         */
+/*                                                     +:+                    */
+/*   By: aaugusti <aaugusti@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2020/03/20 20:20:03 by aaugusti      #+#    #+#                 */
+/*   Updated: 2020/07/28 15:09:57 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@
 #include <stdio.h>
 #include <string.h>
 
+#define BUFFER_SIZE 500
+
 void	ft_strlen_test(void)
 {
-	char	buff[500];
+	char	buff[BUFFER_SIZE];
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	printf("TEST: ft_strlen\n");
-	bzero(buff, 500);
-	while (i < 499)
+	bzero(buff, BUFFER_SIZE);
+	while (i < BUFFER_SIZE - 1)
 	{
 		j = 0;
 		buff[i] = (char)('a' + i % 26);

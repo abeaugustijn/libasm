@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                        ::::::::            */
 /*   ft_read.c                                          :+:    :+:            */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aaugusti <aaugusti@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/23 10:03:11 by aaugusti          #+#    #+#             */
-/*   Updated: 2020/07/07 21:38:38 by aaugusti      ########   odam.nl         */
+/*                                                     +:+                    */
+/*   By: aaugusti <aaugusti@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2020/03/23 10:03:11 by aaugusti      #+#    #+#                 */
+/*   Updated: 2020/07/28 14:54:06 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,30 @@
 #include <string.h>
 #include <unistd.h>
 
-#define FILENAME ("ft_read.asm")
-#define BUFSIZE (500)
+#define FILENAME "ft_read.s"
+#define BUFSIZE 500
 
-void	ft_read_test(void)
+typedef ssize_t	(*t_read_function)(int, void *, size_t);
+
+ssize_t		ft_read_test_one(t_read_function read_function, char *buffer,
+			char *filename, size_t buffer_size)
 {
-	char	buf1[BUFSIZE];
-	char	buf2[BUFSIZE];
-	int		fd1;
-	int		fd2;
-	int		read1_ret;
-	int 	read2_ret;
+	int	fd;
 
-	bzero(buf1, BUFSIZE);
-	bzero(buf2, BUFSIZE);
-	fd1 = open(FILENAME, O_RDONLY);
-	fd2 = open(FILENAME, O_RDONLY);
+	fd = open(filename, buffer_size);
+	return (read_function(fd, buffer, buffer_size));
+}
+
+void		ft_read_test(void)
+{
+	char	buffers[2][BUFSIZE];
+	int		return_values[2];
+
 	printf("\nTEST: ft_read \n");
-	read1_ret = read(fd1, buf1, BUFSIZE);
-	read2_ret = ft_read(fd2, buf2, BUFSIZE);
-	assert(read1_ret == read2_ret);
-	assert(strncmp(buf1, buf2, read1_ret) == 0);
+	bzero(buffers, BUFSIZE * 2);
+	return_values[0] = ft_read_test_one(read, buffers[0], FILENAME, BUFSIZE);
+	return_values[1] = ft_read_test_one(ft_read, buffers[1], FILENAME, BUFSIZE);
+	assert(return_values[0] == return_values[1]);
+	assert(strncmp(buffers[0], buffers[1], return_values[0]) == 0);
 	printf(SUCCESS_STR);
 }
