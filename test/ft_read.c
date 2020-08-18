@@ -6,7 +6,7 @@
 /*   By: aaugusti <aaugusti@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/23 10:03:11 by aaugusti      #+#    #+#                 */
-/*   Updated: 2020/08/18 14:13:57 by aaugusti      ########   odam.nl         */
+/*   Updated: 2020/08/18 14:19:12 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@
 #define BUFSIZE 500
 
 #define ERRNO_TEST_FD 123123
+#define ERRNO_TEST_BUF NULL
 #define ERRNO_TEST_BUF_SIZE 42
 
 typedef ssize_t	(*t_read_function)(int, void *, size_t);
 
 static void		ft_read_test_errno(void)
 {
-	char	*dummy_buffer;
 	int		expected_errno;
 	int		return_values[2];
 
-	dummy_buffer = NULL;
 	errno = 0;
-	return_values[0] = read(ERRNO_TEST_FD, dummy_buffer, ERRNO_TEST_BUF_SIZE);
+	return_values[0] = read(ERRNO_TEST_FD, ERRNO_TEST_BUF, ERRNO_TEST_BUF_SIZE);
 	expected_errno = errno;
 	errno = 0;
-	return_values[1] = ft_read(ERRNO_TEST_FD, dummy_buffer, ERRNO_TEST_BUF_SIZE);
+	return_values[1] =
+		ft_read(ERRNO_TEST_FD, ERRNO_TEST_BUF, ERRNO_TEST_BUF_SIZE);
 	assert(errno == expected_errno);
 	assert(return_values[0] == return_values[1]);
 }
@@ -47,9 +47,12 @@ static ssize_t	ft_read_test_one(t_read_function read_function, char *buffer,
 			char *filename, size_t buffer_size)
 {
 	int	fd;
+	int	return_value;
 
 	fd = open(filename, O_RDONLY);
-	return (read_function(fd, buffer, buffer_size));
+	return_value = read_function(fd, buffer, buffer_size);
+	close(fd);
+	return (return_value);
 }
 
 void			ft_read_test(void)
