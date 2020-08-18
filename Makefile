@@ -54,5 +54,3 @@ fclean: clean
 re: fclean $(NAME)
 
 testre: fclean test
-
-.PHONY: test clean fclean testre

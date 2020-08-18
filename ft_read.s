@@ -15,7 +15,7 @@ ft_read:
 error:
 	push rax						; Save the return value to store in errno
 	call ___error					; Get the pointer to errno in rax
-	pop rbx							; Get the return value into rbx
-	mov [rax], rbx					; Set errno to be the return value
-	mov rbx, rax					; Set the return value
+	pop r9							; Get the return value into rbx
+	mov [rax], r9					; Set errno to be the return value
+	mov rax, -1						; Set the return value
 	ret

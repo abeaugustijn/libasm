@@ -6,7 +6,7 @@
 /*   By: aaugusti <aaugusti@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/23 10:03:11 by aaugusti      #+#    #+#                 */
-/*   Updated: 2020/08/17 11:50:03 by aaugusti      ########   odam.nl         */
+/*   Updated: 2020/08/18 14:06:23 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@ static void		ft_read_test_errno(void)
 {
 	char	*dummy_buffer;
 	int		expected_errno;
+	int		return_values[2];
 
 	dummy_buffer = NULL;
 	errno = 0;
-	read(ERRNO_TEST_FD, dummy_buffer, ERRNO_TEST_BUF_SIZE);
+	return_values[0] = read(ERRNO_TEST_FD, dummy_buffer, ERRNO_TEST_BUF_SIZE);
 	expected_errno = errno;
 	errno = 0;
-	ft_read(ERRNO_TEST_FD, dummy_buffer, ERRNO_TEST_BUF_SIZE);
+	return_values[1] = ft_read(ERRNO_TEST_FD, dummy_buffer, ERRNO_TEST_BUF_SIZE);
 	assert(errno == expected_errno);
+	assert(return_values[0] == return_values[1]);
 }
 
 static ssize_t	ft_read_test_one(t_read_function read_function, char *buffer,

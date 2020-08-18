@@ -6,7 +6,7 @@
 /*   By: aaugusti <aaugusti@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/21 18:51:32 by aaugusti      #+#    #+#                 */
-/*   Updated: 2020/08/17 11:49:05 by aaugusti      ########   odam.nl         */
+/*   Updated: 2020/08/18 14:03:33 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@
 static void	ft_write_test_errno(void)
 {
 	int	expected_errno;
+	int return_values[2];
 
 	errno = 0;
-	write(ERRNO_TEST_FD, ERRNO_TEST_STRING, ERRNO_TEST_LENGTH);
+	return_values[0] = write(ERRNO_TEST_FD, ERRNO_TEST_STRING, ERRNO_TEST_LENGTH);
 	expected_errno = errno;
 	errno = 0;
-	ft_write(ERRNO_TEST_FD, ERRNO_TEST_STRING, ERRNO_TEST_LENGTH);
+	return_values[1] = ft_write(ERRNO_TEST_FD, ERRNO_TEST_STRING, ERRNO_TEST_LENGTH);
 	assert(errno == expected_errno);
+	assert(return_values[0] == return_values[1]);
 }
 
 static void	ft_write_test_return_value(void)
