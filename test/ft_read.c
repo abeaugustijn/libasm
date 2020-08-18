@@ -6,7 +6,7 @@
 /*   By: aaugusti <aaugusti@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/23 10:03:11 by aaugusti      #+#    #+#                 */
-/*   Updated: 2020/08/18 14:06:23 by aaugusti      ########   odam.nl         */
+/*   Updated: 2020/08/18 14:13:57 by aaugusti      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static ssize_t	ft_read_test_one(t_read_function read_function, char *buffer,
 {
 	int	fd;
 
-	fd = open(filename, buffer_size);
+	fd = open(filename, O_RDONLY);
 	return (read_function(fd, buffer, buffer_size));
 }
 
